@@ -13,6 +13,9 @@ use Inertia\Response;
 
 class ProfileController extends Controller
 {
+
+    public function __invoke() {}
+
     /**
      * Display the user's profile form.
      */

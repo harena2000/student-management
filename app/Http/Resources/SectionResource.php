@@ -14,6 +14,12 @@ class SectionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'class' => ClassesResource::make($this->whenLoaded('class')),
+            'section' => SectionResource::make($this->whenLoaded('section')),
+        ];
     }
 }

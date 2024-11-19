@@ -8,7 +8,8 @@
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.0",
         "@tailwindcss/forms": "^0.5.3",
-        "@vitejs/plugin-vue": "^5.0.0",
+        "@types/node": "^22.9.0",
+        "@vitejs/plugin-vue": "^5.2.0",
         "@vue/tsconfig": "^0.6.0",
         "autoprefixer": "^10.4.12",
         "axios": "^1.7.4",
@@ -25,6 +26,7 @@
     "dependencies": {
         "@headlessui/vue": "^1.7.23",
         "@heroicons/vue": "^2.1.5",
-        "ts-node": "^10.9.2"
+        "ts-node": "^10.9.2",
+        "vue-router": "^4.4.5"
     }
 }
