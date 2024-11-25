@@ -1,16 +1,29 @@
 <script lang="ts" setup>
-import { Head } from "@inertiajs/vue3";
+import { Head, useForm, InertiaForm } from "@inertiajs/vue3";
 import { Link, usePage } from "@inertiajs/vue3";
 import { defineComponent, watch, ref } from "vue";
 import { computed } from "@vue/reactivity";
 import NavbarLayout from "../../Layouts/NavbarLayout.vue";
 
-
 defineProps({
     classes: {
         type: Object,
         required: true,
-    }
+    },
+});
+
+interface Student {
+    name: string,
+    email: string,
+    class_id: int,
+    section_id: int,
+}
+
+const form: InertiaForm<Student> = useForm({
+    name: "",
+    email: "",
+    class_id: 0,
+    section_id: 0,
 })
 
 </script>
@@ -19,7 +32,9 @@ defineProps({
         <NavbarLayout>
             <header class="bg-white shadow">
                 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    <h1 class="text-3xl font-bold tracking-tight text-gray-900">Create Students</h1>
+                    <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+                        Create Students
+                    </h1>
                 </div>
             </header>
             <main>
@@ -34,8 +49,8 @@ defineProps({
                                                 Student Information
                                             </h3>
                                             <p class="mt-1 text-sm text-gray-500">
-                                                Use this form to create a
-                                                new student.
+                                                Use this form to create a new
+                                                student.
                                             </p>
                                         </div>
 
@@ -43,7 +58,7 @@ defineProps({
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="name"
                                                     class="block text-sm font-medium text-gray-700">Name</label>
-                                                <input type="text" id="name"
+                                                <input type="text" id="name" v-model="form.name"
                                                     class="mt-1 block w-full border rounded-md shadow-sm py-2 px-3 focus:outline-none sm:text-sm @error text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300 @enderror" />
                                                 <p class="text-red-500">
                                                     This field is required
@@ -53,20 +68,21 @@ defineProps({
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="email" class="block text-sm font-medium text-gray-700">Email
                                                     Address</label>
-                                                <input type="email" id="email" autocomplete="email"
+                                                <input type="email" id="email" autocomplete="email" v-model="form.email"
                                                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="class_id"
                                                     class="block text-sm font-medium text-gray-700">Class</label>
-                                                <select id="class_id"
+                                                <select id="class_id" v-model="form.class_id"
                                                     class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                     <option value="">
                                                         Select a Class
                                                     </option>
-                                                    <option value="1">
-                                                        Class 1
+                                                    <option v-for="item in classes.data" :key="item.id"
+                                                        :value="item.id">
+                                                        {{ item.name }}
                                                     </option>
                                                 </select>
                                             </div>
@@ -74,7 +90,7 @@ defineProps({
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="section_id"
                                                     class="block text-sm font-medium text-gray-700">Section</label>
-                                                <select id="section_id"
+                                                <select id="section_id" v-model="form.section_id"
                                                     class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                     <option value="">
                                                         Select a Section
