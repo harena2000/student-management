@@ -1,21 +1,28 @@
-<script>
-import { Head } from '@inertiajs/vue3';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import NavbarLayout from '@/Layouts/NavbarLayout.vue';
+<script lang="ts" setup>
+import { Head } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
+import { defineComponent, watch, ref } from "vue";
+import { computed } from "@vue/reactivity";
+import NavbarLayout from "../../Layouts/NavbarLayout.vue";
+
+
+defineProps({
+    classes: {
+        type: Object,
+        required: true,
+    }
+})
 
 </script>
 <template>
-    <NavbarLayout>
-        <main>
-
-            <Head title="Create Student" />
-            <AuthenticatedLayout>
-                <template #header>
-                    <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                        Create Student
-                    </h2>
-                </template>
-
+    <div class="min-h-full">
+        <NavbarLayout>
+            <header class="bg-white shadow">
+                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl font-bold tracking-tight text-gray-900">Create Students</h1>
+                </div>
+            </header>
+            <main>
                 <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                     <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
                         <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-12">
@@ -27,7 +34,8 @@ import NavbarLayout from '@/Layouts/NavbarLayout.vue';
                                                 Student Information
                                             </h3>
                                             <p class="mt-1 text-sm text-gray-500">
-                                                Use this form to create a new student.
+                                                Use this form to create a
+                                                new student.
                                             </p>
                                         </div>
 
@@ -57,7 +65,9 @@ import NavbarLayout from '@/Layouts/NavbarLayout.vue';
                                                     <option value="">
                                                         Select a Class
                                                     </option>
-                                                    <option value="1">Class 1</option>
+                                                    <option value="1">
+                                                        Class 1
+                                                    </option>
                                                 </select>
                                             </div>
 
@@ -69,7 +79,9 @@ import NavbarLayout from '@/Layouts/NavbarLayout.vue';
                                                     <option value="">
                                                         Select a Section
                                                     </option>
-                                                    <option value="1">Section A</option>
+                                                    <option value="1">
+                                                        Section A
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -89,7 +101,7 @@ import NavbarLayout from '@/Layouts/NavbarLayout.vue';
                         </div>
                     </div>
                 </div>
-            </AuthenticatedLayout>
-        </main>
-    </NavbarLayout>
+            </main>
+        </NavbarLayout>
+    </div>
 </template>

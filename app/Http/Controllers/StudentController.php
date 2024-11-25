@@ -25,7 +25,7 @@ class StudentController extends Controller
     public function create()
     {
         $classes = ClassesResource::collection(Classes::all());
-        return Inertia::render('Student/Create', [
+        return inertia('Student/Create', [
             'classes' => $classes,
         ]);
     }
