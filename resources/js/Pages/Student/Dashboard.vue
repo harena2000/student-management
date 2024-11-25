@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { usePage } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
 import { defineComponent, watch, ref } from "vue";
 import { computed } from "@vue/reactivity";
 import NavbarLayout from "../../Layouts/NavbarLayout.vue"
@@ -7,182 +7,190 @@ import MagnifyingGlass from "@/Components/icons/MagnifyingGlass.vue";
 import Pagination from "@/Components/Pagination.vue";
 
 const people = [
-  {
-    name: 'Leslie Alexander',
-    email: 'leslie.alexander@example.com',
-    role: 'Co-Founder / CEO',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
-  },
-  {
-    name: 'Michael Foster',
-    email: 'michael.foster@example.com',
-    role: 'Co-Founder / CTO',
-    imageUrl:
-      'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
-  },
-  {
-    name: 'Dries Vincent',
-    email: 'dries.vincent@example.com',
-    role: 'Business Relations',
-    imageUrl:
-      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: null,
-  },
-  {
-    name: 'Lindsay Walton',
-    email: 'lindsay.walton@example.com',
-    role: 'Front-end Developer',
-    imageUrl:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
-  },
-  {
-    name: 'Courtney Henry',
-    email: 'courtney.henry@example.com',
-    role: 'Designer',
-    imageUrl:
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
-  },
-  {
-    name: 'Tom Cook',
-    email: 'tom.cook@example.com',
-    role: 'Director of Product',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    lastSeen: null,
-  },
+    {
+        name: 'Leslie Alexander',
+        email: 'leslie.alexander@example.com',
+        role: 'Co-Founder / CEO',
+        imageUrl:
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        lastSeen: '3h ago',
+        lastSeenDateTime: '2023-01-23T13:23Z',
+    },
+    {
+        name: 'Michael Foster',
+        email: 'michael.foster@example.com',
+        role: 'Co-Founder / CTO',
+        imageUrl:
+            'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        lastSeen: '3h ago',
+        lastSeenDateTime: '2023-01-23T13:23Z',
+    },
+    {
+        name: 'Dries Vincent',
+        email: 'dries.vincent@example.com',
+        role: 'Business Relations',
+        imageUrl:
+            'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        lastSeen: null,
+    },
+    {
+        name: 'Lindsay Walton',
+        email: 'lindsay.walton@example.com',
+        role: 'Front-end Developer',
+        imageUrl:
+            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        lastSeen: '3h ago',
+        lastSeenDateTime: '2023-01-23T13:23Z',
+    },
+    {
+        name: 'Courtney Henry',
+        email: 'courtney.henry@example.com',
+        role: 'Designer',
+        imageUrl:
+            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        lastSeen: '3h ago',
+        lastSeenDateTime: '2023-01-23T13:23Z',
+    },
+    {
+        name: 'Tom Cook',
+        email: 'tom.cook@example.com',
+        role: 'Director of Product',
+        imageUrl:
+            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        lastSeen: null,
+    },
 ]
 
 defineProps({
-  students: {
-    type: Object,
-    required: true,
-  }
+    students: {
+        type: Object,
+        required: true,
+    }
 })
 
 </script>
 <template>
-  <div class="min-h-full">
-    <NavbarLayout>
-      <header class="bg-white shadow">
-        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
-        </div>
-      </header>
-      <main>
-        <div class="bg-gray-100 py-10">
-          <div class="mx-auto max-w-7xl">
-            <div class="px-4 sm:px-6 lg:px-8">
-              <div class="sm:flex sm:items-center">
-                <div class="sm:flex-auto">
-                  <h1 class="text-xl font-semibold text-gray-900">
-                    Students
-                  </h1>
-                  <p class="mt-2 text-sm text-gray-700">
-                    A list of all the Students.
-                  </p>
+    <div class="min-h-full">
+        <NavbarLayout>
+            <header class="bg-white shadow">
+                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
                 </div>
+            </header>
+            <main>
+                <div class="bg-gray-100 py-10">
+                    <div class="mx-auto max-w-7xl">
+                        <div class="px-4 sm:px-6 lg:px-8">
+                            <div class="sm:flex sm:items-center">
+                                <div class="sm:flex-auto">
+                                    <h1 class="text-xl font-semibold text-gray-900">
+                                        Students
+                                    </h1>
+                                    <p class="mt-2 text-sm text-gray-700">
+                                        A list of all the Students.
+                                    </p>
+                                </div>
 
-                <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                  <a href="#"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                    Add Student
-                  </a>
-                </div>
-              </div>
+                                <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                                    <Link :href="this.route('student.create')"
+                                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                                    Add Student
+                                    </Link>
+                                </div>
+                            </div>
 
-              <div class="flex flex-col justify-between sm:flex-row mt-6">
-                <div class="relative text-sm text-gray-800 col-span-3">
-                  <div class="absolute pl-2 left-0 top-0 bottom-0 flex items-center pointer-events-none text-gray-500">
-                    <MagnifyingGlass />
-                  </div>
+                            <div class="flex flex-col justify-between sm:flex-row mt-6">
+                                <div class="relative text-sm text-gray-800 col-span-3">
+                                    <div
+                                        class="absolute pl-2 left-0 top-0 bottom-0 flex items-center pointer-events-none text-gray-500">
+                                        <MagnifyingGlass />
+                                    </div>
 
-                  <input type="text" autocomplete="off" placeholder="Search students data..." id="search"
-                    class="block rounded-lg border-0 py-2 pl-10 text-gray-900 ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                </div>
-              </div>
+                                    <input type="text" autocomplete="off" placeholder="Search students data..."
+                                        id="search"
+                                        class="block rounded-lg border-0 py-2 pl-10 text-gray-900 ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                </div>
+                            </div>
 
-              <div class="mt-8 flex flex-col">
-                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                  <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg relative">
-                      <table class="min-w-full divide-y divide-gray-300">
-                        <thead class="bg-gray-50">
-                          <tr>
-                            <th scope="col"
-                              class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                              ID
-                            </th>
-                            <th scope="col"
-                              class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                              Name
-                            </th>
-                            <th scope="col"
-                              class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                              Email
-                            </th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                              Class
-                            </th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                              Section
-                            </th>
-                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                              Created At
-                            </th>
-                            <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6" />
-                          </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-200 bg-white">
-                          <tr v-for="student in students.data" :key="student.id">
-                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                              {{ student.id }}
-                            </td>
-                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                              {{ student.name }}
-                            </td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              {{ student.email }}
-                            </td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              {{ student.class.name }}
-                            </td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              {{ student.section.name }}
-                            </td>
-                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              {{ student.createdAt }}
-                            </td>
+                            <div class="mt-8 flex flex-col">
+                                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                        <div
+                                            class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg relative">
+                                            <table class="min-w-full divide-y divide-gray-300">
+                                                <thead class="bg-gray-50">
+                                                    <tr>
+                                                        <th scope="col"
+                                                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                            ID
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                            Name
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                            Email
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Class
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Section
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                            Created At
+                                                        </th>
+                                                        <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6" />
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-gray-200 bg-white">
+                                                    <tr v-for="student in students.data" :key="student.id">
+                                                        <td
+                                                            class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                            {{ student.id }}
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                            {{ student.name }}
+                                                        </td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            {{ student.email }}
+                                                        </td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            {{ student.class.name }}
+                                                        </td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            {{ student.section.name }}
+                                                        </td>
+                                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                            {{ student.created_at }}
+                                                        </td>
 
-                            <td
-                              class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                              <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                                Edit
-                              </a>
-                              <button class="ml-2 text-indigo-600 hover:text-indigo-900">
-                                Delete
-                              </button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                                                        <td
+                                                            class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                                                                Edit
+                                                            </a>
+                                                            <button class="ml-2 text-indigo-600 hover:text-indigo-900">
+                                                                Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <Pagination :data="students" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <Pagination :data="students" />
-                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-    </NavbarLayout>
-  </div>
+            </main>
+        </NavbarLayout>
+    </div>
 </template>

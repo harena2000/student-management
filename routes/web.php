@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', ProfileController::class,)->name('profile');
     Route::get('/dashboard', [StudentController::class, 'index'])->name('dashboard');
+    Route::get('/create-student', [StudentController::class, 'create'])->name('student.create');
     Route::get('/classes', [ClassesController::class, 'index'])->name('classes');
 });
 
